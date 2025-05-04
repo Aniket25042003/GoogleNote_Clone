@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Keep AI Clone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.rawgit.com/naptha/tesseract.js/0.2.0/dist/tesseract.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="logo">
+                <img src="Google_Keep.png" alt="Google Keep Logo" style="height: 40px; width: auto; margin-right: 10px;"/>
+                <span>Keep</span>
+            </div>            
+            <div class="top-icons">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-sync"></i>
+                <i class="fas fa-cog"></i>
+                <i class="fas fa-th"></i>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <div class="sidebar-item active" data-tab="notes">
+                <i class="fas fa-sticky-note"></i>
+                <span>Notes</span>
+            </div>
+            <div class="sidebar-item" data-tab="summarizer">
+                <i class="fas fa-compress-alt"></i>
+                <span>Note Summarizer<sup style="color: red; font-size: 0.5em; vertical-align: super;">New</sup></span>
+            </div>
+            <div class="sidebar-item" data-tab="text-to-image">
+                <i class="fas fa-font"></i>
+                <span>Text to Image<sup style="color: red; font-size: 0.5em; vertical-align: super;">New</sup></span>
+            </div>
+            <div class="sidebar-item" data-tab="image-to-text">
+                <i class="fas fa-file-image"></i>
+                <span>Image to Text<sup style="color: red; font-size: 0.5em; vertical-align: super;">New</sup></span>
+            </div>
+            <div class="sidebar-item" data-tab="reminders">
+                <i class="fas fa-bell"></i>
+                <span>Reminders<sup style="color: red; font-size: 0.5em; vertical-align: super;">New</sup></span>
+            </div>
+            <div class="sidebar-item" data-tab="reminders">
+                <i class="fas fa-pen"></i>
+                <span>Edit labels</span>
+            </div>
+            <div class="sidebar-item" data-tab="reminders">
+                <i class="fas fa-archive"></i>
+                <span>Archive</span>
+            </div>
+            <div class="sidebar-item" data-tab="reminders">
+                <i class="fas fa-trash"></i>
+                <span>Trash</span>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <!-- Notes Tab -->
+            <div class="tab-content" id="notes-tab">
+                <div class="note-form">
+                    <input type="text" id="note-title" placeholder="Title">
+                    <textarea id="note-text" placeholder="Take a note..."></textarea>
+                    <button id="add-note-btn">Add Note</button>
+                </div>
+                <div class="notes-container"></div>
+            </div>
+
+            <!-- Note Summarizer Tab -->
+            <div class="tab-content hidden" id="summarizer-tab">
+                <h3>Select a note to summarize:</h3>
+                <select id="note-select" aria-label="Select a note to summarize">
+                    <option value="">Select a note</option>
+                    <!-- Options will be populated dynamically -->
+                </select>
+                <button id="summarize-btn">Summarize</button>
+                <div id="summary-result" class="result-box"></div>
+            </div>
+
+            <!-- Image to Text Tab -->
+            <div class="tab-content hidden" id="image-to-text-tab">
+                <h3>Image to Text</h3>
+                <input type="file" id="image-upload" accept="image/*" aria-label="Upload an image for OCR">
+                <button id="generate-text-btn">Generate Description</button>
+                <div id="image-description-result" class="result-box"></div>
+            </div>
+
+            <!-- Text to Image Tab -->
+            <div class="tab-content hidden" id="text-to-image-tab">
+                <h3>Generate Images from Text</h3>
+                <textarea id="image-prompt" placeholder="Describe the image you want to generate..."></textarea>
+                <button id="generate-image-btn">Generate Image</button>
+                <div id="image-generation-result" class="result-box"></div>
+            </div>
+
+            <!-- Reminders Tab -->
+            <div class="tab-content hidden" id="reminders-tab">
+                <h3>Select a note to extract reminders:</h3>
+                <select id="reminder-note-select">
+                    <option value="">Select a note</option>
+                    <!-- Options will be populated dynamically -->
+                </select>
+                <button id="extract-reminder-btn">Extract Reminder</button>
+                <div id="reminder-result" class="result-box"></div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
